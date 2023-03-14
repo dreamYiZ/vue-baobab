@@ -33,4 +33,7 @@ import UseChooseOne  from './components/UseChooseOne/UseChooseOne.vue'
   align-content: center;
   justify-content: center;
 }
+h1{
+  margin-top: 30px;
+}
 </style>
