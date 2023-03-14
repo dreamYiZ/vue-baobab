@@ -1,12 +1,12 @@
 <template>
-    <div class="x-button">
+    <div class="vb-button">
       <slot></slot>
     </div>
   </template>
   
   <script>
   export default {
-    name: 'x-button',
+    name: 'vb-button',
     props: {
       type: String
     }
@@ -14,10 +14,11 @@
   </script>
   
   <style scoped>
-    .x-button {
+    .vb-button {
         display: inline-block;
         padding: 3px 6px;
         background: #000;
         color: #fff;
+        cursor: pointer;
     }
   </style>

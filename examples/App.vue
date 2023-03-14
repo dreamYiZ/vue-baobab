@@ -1,26 +1,34 @@
 <template>
   <div id="app">
-    <x-button type="primary">button</x-button>
-
+    <vb-button type="primary">button</vb-button>
+    <UseSquared />
   </div>
 </template>
 
-<script>
+<script setup>
+import UseSquared from './components/UseSquared/UseSquared.vue';
 
-export default {
-  name: 'App',
-  components: {
-  }
-}
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+#app{
+  padding-top: 5vh;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.container{
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 </style>
