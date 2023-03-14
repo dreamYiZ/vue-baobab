@@ -35,11 +35,16 @@ const props = defineProps([
   "timeout",
   "timeoutInterval",
   "mustId",
+  "mode",
 ]);
 
 const INITIAL_TIMEOUT_INTERVAL = 300;
 const MIN_TIMEOUT_INTERVAL = 150;
 // const TIMEOUT_RANDOM_RANGE = 50;
+
+const NO_CENTER_RANGE = [1, 2, 3, 6, 9, 8, 7, 4].map((i) => --i);
+const noCenter = props.mode === "no-center";
+let noCenterIdx = 0;
 
 const activeItemIdx = ref(-1);
 let timeoutId = null;
@@ -48,11 +53,22 @@ let timeOver = false;
 
 const timer = (timeout) => {
   timeoutId = setTimeout(() => {
-    if (activeItemIdx.value < 8) {
-      activeItemIdx.value = activeItemIdx.value + 1;
+    if (noCenter) {
+      if(noCenterIdx<7){
+        activeItemIdx.value = NO_CENTER_RANGE[++noCenterIdx]
+      }else{
+        noCenterIdx = 0
+        activeItemIdx.value = NO_CENTER_RANGE[noCenterIdx]
+      }
+
     } else {
-      activeItemIdx.value = 0;
+      if (activeItemIdx.value < 8) {
+        activeItemIdx.value = activeItemIdx.value + 1;
+      } else {
+        activeItemIdx.value = 0;
+      }
     }
+
     timeoutInterval =
       timeoutInterval -
       ((timeoutInterval - (props.timeoutInterval || MIN_TIMEOUT_INTERVAL)) /
