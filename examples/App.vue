@@ -23,6 +23,7 @@ import UseSquared from './components/UseSquared/UseSquared.vue';
 #app{
   padding-top: 5vh;
   text-align: center;
+  padding-bottom: 10vh;
 }
 .container{
   margin-top: 30px;
