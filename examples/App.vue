@@ -2,12 +2,13 @@
   <div id="app">
     <vb-button type="primary">button</vb-button>
     <UseSquared />
+    <UseChooseOne />
   </div>
 </template>
 
 <script setup>
 import UseSquared from './components/UseSquared/UseSquared.vue';
-
+import UseChooseOne  from './components/UseChooseOne/UseChooseOne.vue'
 
 </script>
 
