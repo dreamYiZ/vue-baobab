@@ -29,12 +29,18 @@ import { defineExpose, defineProps, ref } from "vue";
 import { generateRandom } from "../../util";
 const props = defineProps(["data", "readyText", "timeout", "mustId"]);
 
-const INITIAL_TIMEOUT_INTERVAL = 600;
-const activeIdx = ref(null);
-const timeoutId = ref(null);
+// "data",  the data array , {{id: 'some_id', text: 'some_text'}}
+//  "readyText",          '请点击开始'
+//   "timeout",
+//    "mustId"
 
-let maxRange;
-let timeOver = false;
+const INITIAL_TIMEOUT_INTERVAL = 600;
+
+const activeIdx = ref(null); // the index of active item
+const timeoutId = ref(null); // the id which setTimeout return
+
+let maxRange; // max of random generate active index
+let timeOver = false; // when the timeout is end
 
 const timer = (_timeout) => {
   activeIdx.value = generateRandom(0, maxRange);
@@ -59,6 +65,7 @@ const timer = (_timeout) => {
   }, _timeout);
 };
 
+// clear timeout function
 const stopTimer = () => {
   setTimeout(() => {
     clearTimeout(timeoutId.value);
@@ -66,6 +73,7 @@ const stopTimer = () => {
   }, +props.timeout * 1000);
 };
 
+//  start animation
 const start = () => {
   maxRange = props.data.length - 1;
   timeOver = false;
@@ -82,6 +90,7 @@ const start = () => {
   }
 };
 
+// stop animation
 const stop = () => {
   clearTimeout(timeoutId.value);
   timeoutId.value = null;
