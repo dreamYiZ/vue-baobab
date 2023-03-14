@@ -33,26 +33,56 @@ const props = defineProps([
   "color",
   "active-class",
   "timeout",
+  "timeoutInterval",
+  "mustId",
 ]);
+
+const INITIAL_TIMEOUT_INTERVAL = 300;
+const MIN_TIMEOUT_INTERVAL = 150;
+// const TIMEOUT_RANDOM_RANGE = 50;
 
 const activeItemIdx = ref(-1);
 let timeoutId = null;
+let timeoutInterval = INITIAL_TIMEOUT_INTERVAL;
+let timeOver = false;
 
 const timer = (timeout) => {
   timeoutId = setTimeout(() => {
-    if (activeItemIdx.value < 9) {
+    if (activeItemIdx.value < 8) {
       activeItemIdx.value = activeItemIdx.value + 1;
     } else {
       activeItemIdx.value = 0;
     }
-    timer(100);
-  }, timeout || 100);
+    timeoutInterval =
+      timeoutInterval -
+      ((timeoutInterval - (props.timeoutInterval || MIN_TIMEOUT_INTERVAL)) /
+        props.timeout) *
+        Math.random() *
+        3;
+
+    if (timeOver) {
+      if (props.data[activeItemIdx.value].id !== props.mustId) {
+        timer(timeoutInterval);
+      }
+    } else {
+      timer(timeoutInterval);
+    }
+  }, timeout);
 };
 
 const start = () => {
-  timer();
+  timeOver = false;
+  timeoutInterval = INITIAL_TIMEOUT_INTERVAL;
+  timer(timeoutInterval);
   setTimeout(() => {
-    clearTimeout(timeoutId);
+    timeOver = true;
+    if (props.mustId) {
+      if (props.data[activeItemIdx.value].id === props.mustId) {
+        clearTimeout(timeoutId);
+      }
+    } else {
+      clearTimeout(timeoutId);
+    }
   }, props.timeout * 1000);
 };
 
@@ -60,7 +90,6 @@ defineExpose({
   start,
   activeItemIdx,
 });
-
 </script>
   
 <style scoped lang="less">

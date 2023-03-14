@@ -8,7 +8,8 @@
       :data="data"
       color="#FFF"
       timeout="6"
-      
+      timeoutInterval="130"
+      mustId="3"
     />
     <vb-button style="margin-top: 30px" @click="start"> 开始 </vb-button>
   </div>
@@ -21,39 +22,39 @@ const squaredRef = ref(null);
 
 let data = [
   {
-    id: 1,
+    id: "1",
     text: 1,
   },
   {
-    id: 2,
+    id: "2",
     text: 2,
   },
   {
-    id: 3,
+    id: "3",
     text: 3,
   },
   {
-    id: 4,
+    id: "4",
     text: 4,
   },
   {
-    id: 5,
+    id: "5",
     text: 5,
   },
   {
-    id: 6,
+    id: "6",
     text: 6,
   },
   {
-    id: 7,
+    id: "7",
     text: 7,
   },
   {
-    id: 8,
+    id: "8",
     text: 8,
   },
   {
-    id: 9,
+    id: "9",
     text: 9,
   },
 ];
@@ -65,7 +66,6 @@ data.map((i) => {
 
 const start = () => {
   squaredRef.value.start();
-
 };
 </script>
 

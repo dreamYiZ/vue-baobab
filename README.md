@@ -22,3 +22,9 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+### Preview
+
+https://641023d893def75276f52068--frolicking-cendol-3ecee1.netlify.app/
