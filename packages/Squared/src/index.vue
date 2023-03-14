@@ -50,7 +50,6 @@ const timer = (timeout) => {
 };
 
 const start = () => {
-  console.log("start--->");
   timer();
   setTimeout(() => {
     clearTimeout(timeoutId);
@@ -62,7 +61,6 @@ defineExpose({
   activeItemIdx,
 });
 
-console.log("props", props);
 </script>
   
 <style scoped lang="less">
